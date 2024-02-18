@@ -37,9 +37,17 @@ Beautiful Soup library: Beautiful Soup is a Python package for parsing HTML and 
 + Validate URLs and depth function(Riley)
 + Retrieve function HTML from each URLs (Danny)
 + Parse url from href on the current webpage function (Danny)
+<<<<<<< HEAD
 + Create a graph in memory and update function for (Riley)
 + check distance function
 + 
+=======
++ Create a graph in memory and update function for correct depth (Riley)
++ Print graph function
++ closeness computation (Danny)
++ Print closeness computation process : 1+2 = 3(Danny)
+
+>>>>>>> c47cefdc7c2fae118803f523aa0ea4054a54eda7
 
 
 - Program Output Tasks:
@@ -49,3 +57,7 @@ Beautiful Soup library: Beautiful Soup is a Python package for parsing HTML and 
 + Graphical display - Graph representation (both)
 + Generate function to a CSV file of crawled webpage's closeness. as output
 + Function measuring centrality.
+<<<<<<< HEAD
+=======
+
+>>>>>>> c47cefdc7c2fae118803f523aa0ea4054a54eda7
