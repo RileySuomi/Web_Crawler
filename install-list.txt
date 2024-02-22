@@ -1,0 +1,17 @@
+
+First need to make sure you have python on your system (py 3.12) :
+
+1. install pip 
+2. install py
+
+..then configure py interpreter into yor path
+
+Install additional pakcages for various library access for functions and support :
+
+2. pip install validators 
+3. pip insatll beautifulsoup4
+4. pip insatll PyQt5
+5. pip insatll requests
+6. pip insatll algorithms
+7. pip insatll networkx
+8. pip install matplotlib
