@@ -1,7 +1,7 @@
 import validators # library that holds validators for various inputs
 
 # function that validates a URL
-def validate_url(url):
+def valid_url(url):
     if validators.url(url):
         return True
     else:
