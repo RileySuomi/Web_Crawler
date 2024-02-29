@@ -13,7 +13,7 @@ def validate_depth(depth) :
         return -1
     
 
-
+###Main function to run test before passing to main.py
 def main():
     with open('URL_List.txt','r') as file:
         pass

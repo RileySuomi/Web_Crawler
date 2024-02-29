@@ -4,15 +4,22 @@ import requests
 import networkx as nx
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
-
+from nanoid import generate
 import validator
 
-#A node that store representative url and href
+#Adding directed edge function:
+def add_edge(G,url, url1):
+    id = generate(size = 10)
+    G.add_node(id, url = url)
 
-class GraphVertex:
-    def __init__(self, node_id, url):
-        self.node_id = node_id
-        self.url = u
+    id1 = generate(size = 10)
+    G.add_node(id1, url = url1)
+    
+    G.add_edge(id, id1)
+
+
+
+
 
 def crawl(url, depth): 
 
@@ -55,7 +62,8 @@ def crawl(url, depth):
                     queue.append((next_url, curr_depth + 1))
 
                     # add an edge from current url to here
-                    graph.add_edge(curr_url, next_url)
+                    #graph.add_edge(curr_url, next_url)
+                    add_edge(graph, curr_url, next_url)
 
         
         except Exception as err: # error handler
@@ -65,7 +73,9 @@ def crawl(url, depth):
     return graph
 
 def main():
-
+    #with open('URL_List.txt','r') as  file:
+        
+        #pass
     pass
 
 if __name__ == "__main__":
@@ -74,7 +84,7 @@ if __name__ == "__main__":
         print("Incorrect amount of flags")
 
     # command line process should be "python <url> <depth>"
-    url = sys.argv[1]
-    depth = int(sys.argv[2])
+    url = sys.argv[0]
+    depth = int(sys.argv[1])
 
     graph = crawl(url, depth)
