@@ -28,7 +28,7 @@ Collaborative work with teammate to implement graph with created websites enviro
 
 
 ## Function explanations:
-+ validator library: used to fastly validate url such as email, websites, and
++ Validator Library: used to fastly validate url such as email, websites, and
 + Beautiful Soup library: Beautiful Soup is a Python package for parsing HTML and XML documents, including those with malformed markup. It creates a parse tree for documents that can be used to extract data from HTML, which is useful for web scraping.
 
 
