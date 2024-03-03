@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from nanoid import generate
 import validator
 import time
-
+import heapq as q
 
 def crawl(url, depth): 
 
@@ -23,7 +23,7 @@ def crawl(url, depth):
     while queue: #queue not empty
 
         # get the current url and current depth
-        curr_url, curr_depth = queue.pop(0) 
+        curr_url, curr_depth = q.heappop(queue) 
 
         # need some conditions based on depth and if valid
         if curr_depth >= depth or not validator.valid_url(curr_url): 
@@ -59,7 +59,7 @@ def crawl(url, depth):
                     # dont want to fetch pages that we already have (append to queue and do it all again)
                     if next_url not in visited:
                         visited.add(next_url)
-                        queue.append((next_url, curr_depth + 1))
+                        q.heappush(queue, (next_url, curr_depth + 1))
 
                     # add an edge from current url to here
                     graph.add_edge(curr_url, next_url)
@@ -71,12 +71,6 @@ def crawl(url, depth):
 
     # want to return the graph created
     return graph
-
-def main():
-    #with open('URL_List.txt','r') as  file:
-        
-        #pass
-    pass
 
 if __name__ == "__main__":
     
