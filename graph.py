@@ -38,3 +38,42 @@ plt.show()
 #plt.show()
 
 print(G.nodes)
+A =  nx.adjacency_matrix(G)
+A_dense = A.todense()
+print(A_dense)
+
+
+
+
+G = nx.Graph()
+
+G.add_node('A')
+G.add_node('B')
+G.add_edge('A', 'B')
+G.add_node('C')
+G.add_edge('B', 'C')
+G.add_node('D')
+G.add_node('E')
+G.add_edge('B', 'E')
+G.add_edge('C', 'E')
+G.add_edge('D', 'E')
+G.add_edge('A', 'D')
+G.add_edge('D', 'B')
+
+
+
+nx.draw(G, with_labels = True, font_weight= 'bold')
+plt.show()
+
+#drawing 2
+# G = nx.petersen_graph()
+# subax1 = plt.subplot(121)
+# nx.draw(G, with_labels=True, font_weight='bold')
+# subax2 = plt.subplot(122)
+# nx.draw_shell(G, nlist=[range(5, 10), range(5)], with_labels=True, font_weight='bold')
+#plt.show()
+
+print(G.nodes)
+A =  nx.adjacency_matrix(G)
+A_dense = A.todense()
+print(A_dense)

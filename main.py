@@ -88,7 +88,7 @@ if __name__ == "__main__":
 
     plt.figure(figsize=(12, 8))
     pos = ax.spring_layout(graph)
-    ax.draw(graph, pos, with_labels=True, node_size=2000, node_color="skyblue", font_size=10, edge_color='gray', arrowsize=20)
+    ax.draw(graph, pos, with_labels=True, node_size=1000, node_color="skyblue", font_size=6, edge_color='gray', arrowsize=10)
     plt.title(f"Web Crawler Graph (Depth={depth})")
     plt.show()
     
