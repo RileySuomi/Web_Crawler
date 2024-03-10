@@ -28,10 +28,17 @@ def Dijkstra(G, s):
                 D[v] = updated_D
                 q.heappush(pq, (updated_D, v))    
     sum = 0
+    n = 0
     for v in D:
         if D[v] != float('inf'):
             sum += D[v]
-    return sum
+            n +=1
+    if (sum != 0):
+        return n/sum
+    else:
+        return float('inf')
+    
+
 
 def closeness(G):
     close_list = {}
