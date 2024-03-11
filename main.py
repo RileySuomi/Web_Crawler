@@ -1,94 +1,92 @@
 import sys
-from bs4 import BeautifulSoup
-import requests
 import networkx as ax
-from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
-from nanoid import generate
-import validator
+#from nanoid import generate
 import time
-import heapq as q
+import closeness_centrality as cc
+import os
 
-def crawl(url, depth): 
+import graph as g
 
-    # instantiate the graph
-    graph = ax.DiGraph() 
-
-    # want to create a queue that orders through the hrefs from the starter link 
-    queue = [(url, 0)] 
-
-    # want to create a set of visited links.. to make it BFS instead of brute
-    visited = set() 
-
-    while queue: #queue not empty
-
-        # get the current url and current depth
-        curr_url, curr_depth = q.heappop(queue) 
-
-        # need some conditions based on depth and if valid
-        if curr_depth >= depth or not validator.valid_url(curr_url): 
-            graph.add_node(curr_url)
-            continue 
-
-        #  special case for a depth of zero
-        # elif depth == 0:
-        #     graph.add_node(curr_url)
-        #     continue
-
-        try: 
-            res = requests.get(curr_url) # fetch the page
-
-            if res.status_code == 200: # code 200 represents a valide url 
-                print(f"crawling {curr_url} ...")
-                soup = BeautifulSoup(res.content, 'html.parser') # parse the current html
-
-                # find all links on the current htsml (a list). 
-                # 'a' represents the <a tag in html which is used for hyperlinks, then also make sure it is a href
-                links = soup.find_all('a', href=True) 
-
-                # look at all the links 
-                for link in links: 
-                    next_url = link['href']
-
-                    # check if valid html, some are different
-                    if not validator.valid_url(next_url): # page.html
-                        continue 
-
-                    #if next url is valid, we want to add it to queue 
-                    # as well as increase the depth since we are going to make a jump here
-                    # dont want to fetch pages that we already have (append to queue and do it all again)
-                    if next_url not in visited:
-                        visited.add(next_url)
-                        q.heappush(queue, (next_url, curr_depth + 1))
-
-                    # add an edge from current url to here
-                    graph.add_edge(curr_url, next_url)
-                   
-
-        
-        except Exception as err: # error handler
-             print(f"Error crawling {curr_url}: {err}")
-
-    # want to return the graph created
-    return graph
-
-if __name__ == "__main__":
+def main():
     
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 2:
         print("Incorrect amount of flags")
 
-    # command line process should be "python <url> <depth>"
-    url = sys.argv[1]
-    depth = int(sys.argv[2])
-    last_time = time.time()
+    # command line process should be "python main.py <txt.file>"
+        
+    # .txt file format should be <url> <depth>
+    
+    # the .txt file
+    txt_file = sys.argv[1]
 
-    graph = crawl(url, depth)
+    try: 
+        # read file
+        with open(txt_file, 'r') as file: 
+            # get one line at a time
+            for line in file:
+                parts = line.strip().split()
+                if len(parts) != 2 :
+                    print("Invalid format. Each line should be a url and a depth sperated by a space")
+                    sys.exit(1)
+                #order +=1
+                url, depth_as_str= line.split() # splits by the blank space
+                depth = int(depth_as_str) # depth needs to be a int
 
-    print(time.time() - last_time)
+                # processing of the files
 
-    plt.figure(figsize=(12, 8))
-    pos = ax.spring_layout(graph)
-    ax.draw(graph, pos, with_labels=True, node_size=1000, node_color="skyblue", font_size=6, edge_color='gray', arrowsize=10)
-    plt.title(f"Web Crawler Graph (Depth={depth})")
-    plt.show()
+                last_time = time.time()
+                graph = g.crawl(url, depth) #crawl 
+                print(time.time() - last_time)
+
+                  # creates our sorted list for finding central centrality of the graph
+                #sorted_cc = cc.sort_centrality(cc.closeness(graph))
+    
+
+                #Filter and output Centrality nodes
+                # for key, value in sorted_cc.items():
+                #     if (value != float('inf')):
+                #         print(f"url: {key}, Centrality: {value}")
+    
+                #generate directory
+                #path: str = os.path.dirname(os.path.realpath(__file__))
+
+                #creating a CSV file:
+                # with open(path + f'sorted-closeness-centrality.csv', 'w', newline='') as file:
+                #     file.write("[url],[desc_central]\n")
+                #     for key, value in sorted_cc.items():
+                #         if (value != float('inf')):
+                #             #Writing Rows to the CSV file:
+                #             file.write(f"{key}, {value}\n")
+            sorted_cc = cc.sort_centrality(cc.closeness(graph))
+            for key, value in sorted_cc.items():
+                if (value != float('inf')):
+                    print(f"url: {key}, Centrality: {value}")
+                            
+            
+            #creating a CSV file:
+            path: str = os.path.dirname(os.path.realpath(__file__))
+            with open(path + f'sorted-closeness-centrality.csv', 'w', newline='') as file:
+                file.write("[url],[desc_central]\n")
+                for key, value in sorted_cc.items():
+                    if (value != float('inf')):
+                        #Writing Rows to the CSV file:
+                        file.write(f"{key}, {value}\n")
+            
+            plt.figure(figsize=(12, 8))
+            pos = ax.spring_layout(graph)
+            ax.draw(graph, pos, with_labels=True, node_size=1000, node_color="skyblue", font_size=6, edge_color='gray', arrowsize=10)
+            plt.title(f"Web Crawler Graph (Depth={depth})")
+            plt.show()
+
+    except FileNotFoundError:
+        print("File not found")
+        sys.exit(1)
+
+    
+if __name__ == "__main__":   
+
+    #graph.main()
+    main()         
+
     
