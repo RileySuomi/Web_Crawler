@@ -51,7 +51,7 @@ To start the program. You must enter your list of input(s) line-by-line in URL_L
 
 ## Reflection
 
-(time complexities of the algorithms you used) - danny
+Next to all the functions we have included time complexities in comments.
 
 The main difficulties encountered during this project were aspects of design. As we made our own implementation of dijkstra we at first had problems with runtime and it being too long. 
 Over the course of some time we analyzed areas we could optimize and made those changes to 
