@@ -58,6 +58,8 @@ Over the course of some time we analyzed areas we could optimize and made those 
 
 ## Results
 
+**These results are specific for a test of " https://chess.com 2 "**
+
 CSV list : 
 
 
