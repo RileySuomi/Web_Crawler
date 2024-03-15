@@ -61,13 +61,14 @@ Over the course of some time we analyzed areas we could optimize and made those 
 CSV list : 
 
 
-![Image Example](C:/Development/Projects/webcrawler_csv_list.png)
+![webcrawler_csv_list](https://github.com/DANNY130/WebCrawler/assets/97262216/003713ad-556a-45fd-a896-564ee97650af)
+
 
 
 Visual Graph: 
 
 
-![Image Example](C:/Development/Projects/webcrawler_visual_graph.png)
+![webcrawler_visual_graph](https://github.com/DANNY130/WebCrawler/assets/97262216/a79cedfe-d3f5-407e-9bbf-8f2d32fb77ac)
 
 
 ## Function explanations:
@@ -76,7 +77,7 @@ Visual Graph:
 
 
 ## Tasks:
-- **Workflow tasks:**
+**Workflow tasks:**
 + Validate URLs and depth function
 + Retrieve function HTML from each URLs
 + Parse url from href on the current webpage function 
@@ -84,7 +85,7 @@ Visual Graph:
 + Print graph function
 + closeness computation 
 + Print closeness computation process
-- **Program Output Tasks:**
+**Program Output Tasks:**
 + Parse HTML function
 + Find function for link (href attribute reference) 
 + Encrypting function for URL_list files
