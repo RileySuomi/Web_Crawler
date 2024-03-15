@@ -40,7 +40,7 @@ Install additional packages for various library access for functions and support
 ## User Manual
 
 To start the program. You must enter your list of input(s) line-by-line in URL_List.txt. Your input must be in this form:
-        "<url> <depth#>\n"
+        "url depth\n"
 
 1. Open new terminal. 
 2. run 'python main.py URL_List.txt'
@@ -61,13 +61,13 @@ Over the course of some time we analyzed areas we could optimize and made those 
 CSV list : 
 
 
-![Image Example](C:\Development\Projects\webcrawler_csv_list.png)
+![Image Example](C:/Development/Projects/webcrawler_csv_list.png)
 
 
 Visual Graph: 
 
 
-![Image Example](C:\Development\Projects\webcrawler_visual_graph.png)
+![Image Example](C:/Development/Projects/webcrawler_visual_graph.png)
 
 
 ## Function explanations:
@@ -76,7 +76,7 @@ Visual Graph:
 
 
 ## Tasks:
-- Workflow tasks:
+- **Workflow tasks:**
 + Validate URLs and depth function
 + Retrieve function HTML from each URLs
 + Parse url from href on the current webpage function 
@@ -84,7 +84,7 @@ Visual Graph:
 + Print graph function
 + closeness computation 
 + Print closeness computation process
-- Program Output Tasks:
+- **Program Output Tasks:**
 + Parse HTML function
 + Find function for link (href attribute reference) 
 + Encrypting function for URL_list files
