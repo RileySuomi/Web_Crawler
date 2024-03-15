@@ -5,10 +5,9 @@ from bs4 import BeautifulSoup
 import heapq as q
 import requests
 # instantiate the graph
+
 graph = ax.DiGraph()
 def crawl(url, depth): 
-
-     
 
     # want to create a queue that orders through the hrefs from the starter link 
     queue = [(url, 0)] 

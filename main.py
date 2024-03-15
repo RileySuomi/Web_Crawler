@@ -1,7 +1,6 @@
 import sys
 import networkx as ax
 import matplotlib.pyplot as plt
-#from nanoid import generate
 import time
 import closeness_centrality as cc
 import os
@@ -37,42 +36,25 @@ def main():
 
                 last_time = time.time()
                 graph = g.crawl(url, depth) #crawl 
-                print(time.time() - last_time)
+                print(f"Runtime = {time.time() - last_time}")
 
-                  # creates our sorted list for finding central centrality of the graph
-                #sorted_cc = cc.sort_centrality(cc.closeness(graph))
-    
-
-                #Filter and output Centrality nodes
-                # for key, value in sorted_cc.items():
-                #     if (value != float('inf')):
-                #         print(f"url: {key}, Centrality: {value}")
-    
-                #generate directory
-                #path: str = os.path.dirname(os.path.realpath(__file__))
-
-                #creating a CSV file:
-                # with open(path + f'sorted-closeness-centrality.csv', 'w', newline='') as file:
-                #     file.write("[url],[desc_central]\n")
-                #     for key, value in sorted_cc.items():
-                #         if (value != float('inf')):
-                #             #Writing Rows to the CSV file:
-                #             file.write(f"{key}, {value}\n")
             sorted_cc = cc.sort_centrality(cc.closeness(graph))
-            for key, value in sorted_cc.items():
-                if (value != float('inf')):
-                    print(f"url: {key}, Centrality: {value}")
+            # for key, value in sorted_cc.items():
+            #     if (value != float('inf')):
+            #         print(f"url: {key}, Centrality: {value}")
                             
             
             #creating a CSV file:
             path: str = os.path.dirname(os.path.realpath(__file__))
-            with open(path + f'sorted-closeness-centrality.csv', 'w', newline='') as file:
+            file_path = os.path.join(path, 'sorted_closeness.csv')
+            with open(file_path, 'w', newline='') as file:
                 file.write("[url],[desc_central]\n")
                 for key, value in sorted_cc.items():
                     if (value != float('inf')):
                         #Writing Rows to the CSV file:
                         file.write(f"{key}, {value}\n")
             
+            print("CSV list of closesness's have successfully been put in your filepath!")
             plt.figure(figsize=(12, 8))
             pos = ax.spring_layout(graph)
             ax.draw(graph, pos, with_labels=True, node_size=1000, node_color="skyblue", font_size=6, edge_color='gray', arrowsize=10)

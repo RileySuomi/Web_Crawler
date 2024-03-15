@@ -3,8 +3,9 @@ import heapq as q
 
 import matplotlib.pyplot as plt
 
+# dijkstra algorithm to traverse the tree
 
-def Dijkstra(G, s):
+def Dijkstra(G, s): # O(e logv)
     
     V = list(G.nodes)
     #print(V)
@@ -13,7 +14,6 @@ def Dijkstra(G, s):
     D = {v: float('infinity') for v in V}
     D[s] = 0
     q.heappush(pq, (0, s))
-    shortest_path = {}
     while pq: #while the queue not empty. 
         
         #Cheapest vertex reachable from q -> pop distance and url
@@ -39,19 +39,22 @@ def Dijkstra(G, s):
         return float('inf')
     
 
-
+# find closeness of the points 
 def closeness(G):
     close_list = {}
     for v in G.nodes:
         shortest = Dijkstra(G, v)
         close_list[v] = shortest
-    print(close_list)
+    #print(close_list)
     return close_list
 
-
+# sort from most close to least
 def sort_centrality(closests):
     centralities_list = dict(sorted(closests.items(), key=lambda item: item[1]))
     return centralities_list
+
+
+# test code
 
 if __name__ == '__main__' :
     
@@ -71,7 +74,7 @@ if __name__ == '__main__' :
     G.add_edge('D', 'B')
 
     updated = sort_centrality(closeness(G))
-    print(updated)
+    #print(updated)
 
     nx.draw(G, with_labels = True, font_weight= 'bold')
     plt.show()
