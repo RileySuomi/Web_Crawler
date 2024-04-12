@@ -60,11 +60,6 @@ For the most part, our first week of starting the project were all about researc
 
 There is reference to our tasks layout at the bottom of this README.
 
-Video of program running : 
-
-
-[Link Text](https://youtu.be/JOV5DsWpjek)
-
 
 
 ## Results
